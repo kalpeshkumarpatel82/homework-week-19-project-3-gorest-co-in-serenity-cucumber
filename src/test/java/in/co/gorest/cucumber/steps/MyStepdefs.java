@@ -129,4 +129,11 @@ public class MyStepdefs {
         List<String> gender = response.log().all().extract().path("findAll{it.id==3897}.gender");
         Assert.assertEquals(expected, gender.get(0));
     }
+
+    @And("^I verify if total records are (\\d+)$")
+    public void iVerifyIfTotalRecordsAre(int expected) {
+        response = usersSteps.getAllUsers();
+        List<?> totalRecord = response.log().all().extract().path("");
+        Assert.assertEquals(expected, totalRecord.size());
+    }
 }
